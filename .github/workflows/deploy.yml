@@ -26,7 +26,7 @@ jobs:
 
       - name: Copy root files
         run: |
-          cp index.html dist/index.html
+          cp index.md dist/index.md
           cp .nojekyll dist/.nojekyll
 
       - name: Setup Pages
