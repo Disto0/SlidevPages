@@ -1,11 +1,11 @@
 # Dependencies
-node_modules/
+**/node_modules/
 
 # Build output
 dist/
 
 # Python venv (généré par l'extension Slidev VSCode)
-.venv/
+**/.venv/
 
 # Logs
 *.log
@@ -16,5 +16,5 @@ npm-debug.log*
 Thumbs.db
 
 # VSCode
-.vscode/*
-!.vscode/extensions.json
+**/.vscode/*
+**/!.vscode/extensions.json
