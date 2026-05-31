@@ -18,9 +18,9 @@ jobs:
         with:
           node-version: 'lts/*'
 
-      - name: Install and build Slide1
+      - name: Install and build Coding01
         run: |
-          cd Slide1
+          cd Coding01
           npm install
           npx slidev build slides.md --base /${{ github.event.repository.name }}/Coding01/ --out ../dist/Coding01
 
