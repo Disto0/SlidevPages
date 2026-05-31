@@ -22,7 +22,7 @@ jobs:
         run: |
           cd Slide1
           npm install
-          npx slidev build slides.md --base /${{ github.event.repository.name }}/Slide1/ --out ../dist/Slide1
+          npx slidev build slides.md --base /${{ github.event.repository.name }}/Coding01/ --out ../dist/Coding01
 
       - name: Copy root files
         run: |
