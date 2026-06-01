@@ -28,9 +28,9 @@ jobs:
 
       - name: Install and build CodingBases01
         run: |
-          cd CodingBases01
+          cd codingbases01
           nci
-          nr build slides.md --base /${{ github.event.repository.name }}/CodingBases01/ --out ../dist/CodingBases01
+          nr build slides.md --base /${{ github.event.repository.name }}/codingbases01/ --out ../dist/codingbases01
 
       - name: Copy root files
         run: |
