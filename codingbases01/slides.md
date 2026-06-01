@@ -219,7 +219,7 @@ Certains raccourcis on été créé:
 
 ---
 
-### Low-level VS High-level Languages. 
+### Langages bas-niveau vs haut-niveau
 
 ---
  
@@ -564,7 +564,229 @@ Ce principe est le plus courant.
 
 ---
 
+#### Langage Interprété
+___
+
+<br />
+
 Mais, en parallèle de cà, d’autres langages sont des langages interprétés (exécutés tel quel, sans compilation), c’est notre langage qui tourne au runtime. (ex python)  
 
 => Il n’y a donc pas de notion de fichiers sources, ni de binaire compilé, c’est livré tel quel.
 Le code n’est plus vraiment protégé explicitement, mais c’est aussi moins contraignant.
+
+<br />
+---
+
+### Langages non-managés vs managés.
+___
+
+<br />
+
+Une autre différence à évoquer, est la différence entre les langages non-managés et les langages managés.
+
+<br />
+
+#### Langages non-managés
+___
+
+<br />
+
+Exemple C++ :
+
+=> j’ai besoin de mémoire, j’alloue de la mémoire, je l’utilise, et je pense TOUJOURS à libérer la mémoire manuellement quand je suis sur d’avoir fini:
+
+<br />
+
+Ceux-ci sont en général plus performants, mais comportent inévitablement plus de risque de fuite de mémoire, car la responsabilité de libérer la mémoire, incombe au développeur.
+
+<br />
+
+=> Si celui-ci alloue de la mémoire pour faire une opération dans son code, et qu’il oublie de la libérer, cela provoque ce qu’on appelle un LEAK.
+
+<br />
+
+Autrement dit, une fuite de mémoire; 
+
+=> Si le code ne peut que allouer de la mémoire sans jamais pouvoir la libérer, la consommation de mémoire (ram) risque d’augmenter avec le temps d’utilisation du programme, jusqu’à éventuellement arriver à un crash du système quand la mémoire sera saturée.
+
+
+---
+
+#### Langages managés
+___
+
+<br />
+
+Exemple C# :
+
+=> j’ai besoin de mémoire, j’alloue de la mémoire, je l’utilise, et le système la libérera lui même automatiquement, plus tard… (quand?), quand cette mémoire ne sera plus reliée à rien…
+
+<br />
+
+Eux sont en général à l’opposé un peu moins optimisés, mais sont plus safe à utiliser.
+
+
+=> Le problème ici est qu’au runtime, dans un game engine, le temps est précieux, chaques ms compte, et l’opération qui libère les ressources, le GarbageCollector prend lui aussi des ressources (précieuses) lorsqu’il s’exécute,... 
+
+On préférera dès lors repenser (à 10x) notre code pour limiter un maximum son déclenchement.
+
+
+---
+
+### Les variables
+___
+
+<br />
+
+Ok, maintenant on va parler un peu de variables.
+
+<br />
+
+Une variable c’est quoi? 
+
+=> C’est une sorte de conteneur pour stocker une (ou plusieurs)  information(s). 
+
+=> C’est une zone mémoire réservée, avec un nom pour y accéder…:
+
+(… ou parfois plutôt une adresse, parce que c’est plus direct)
+
+<br />
+
+
+---
+
+#### Les types de variables
+___
+
+<br />
+
+Maintenant, c’est bien, mais il y a quoi dedans?
+
+<br />
+
+=> C’est la que le type vient en jeu.
+
+<br />
+
+Quand vous créez une variable, vous pouvez/devez spécifier de quel type elle est.
+
+<br />
+
+En précisant ce type, nous savons dès lors à tout moment, en plus du nom de la variable, quel type de donnée trouver dedans (en cas de lecture), mais aussi quel type de donnée nous pouvons aussi écrire dedans .
+
+<br />
+
+=> Par exemple, si nous avons besoin d’une variable pour stocker l'âge d’une personne, cette distinction de type va permettre de faire la différence entre “40” et “quarante”, entre des chiffres entier (INT) et un mot en lettres (“String”), ou encore un nombre à décimale inutile ici. (40.0)
+
+
+---
+
+##### Data-Types vs Reference-Types
+___
+
+<br />
+
+Aussi, en fonction du langage, il a toujours une liste  de types de base dit types de valeur 
+
+<br />
+
+=> si on fait une copie de la variable dans une autre et qu’on modifie l’original par après, la valeur ne sera modifié que dans l’original et pas la copie
+
+<br />
+
+Et ainsi que d’autres types dit de référence 
+
+<br />
+
+=> si on modifie l’une, l’autre est modifiée aussi
+
+
+---
+
+###### Les Data-Types
+___
+
+<br />
+
+Quelques exemples de Data types:
+- bool, ou BOOLEAN => peut contenir 2 valeurs: true, ou false (1 ou 0)
+- int ou INTEGER => peut stocker un nombre entier (en général de -4 milliard à + 4 milliard)
+- float => peut stocker des “nombres à virgule flottante” (décimale)
+- char => peut stocker un charactère.
+- enum ou ENUMERATION => peut contenir une liste (énumération) de champs, uniques, indexable tel quel, ou avec un numéro.
+- il y en a d’autres en fonction du langage, souvent plusieurs variante d’un même type mais avec une taille mémoire différente. (ex Int16/short), Int64/long, float64/double), ou encore version signée vs non signée (ex uint, sbytes, ufloat…)
+- votre data type custom.
+
+<br />
+
+…Oui un type correspond a une taille mémoire, et certains langages permettent de faire la différence.
+
+---
+
+###### Les Reference-Types
+___
+
+<br />
+
+Et voici aussi quelques exemples de types références:
+- string => peut stocker une chaine de charactère. (mais attention se comporte comme un value type en général)
+- Array, ou List => peut contenir plusieurs valeurs, indexable avec un numéro
+- Dictionnary => peut contenir plusieurs valeurs, indexable avec un une clé (nom)
+- tout autre “collection”
+- tous les autres types propre au langage visé (il y en a énormément, et cela varie beaucoup d’un langage à un autre)
+- tous vos types références custom.
+
+
+---
+
+### Les langages typés et les langages non-typés.
+___
+
+#### Langages typés
+___
+
+<br />
+
+Partant de ce principe de types de variable, c’est la qu’interviennent les langages typés.
+
+<br />
+
+En forçant un typage “fort” cela permet de s’assurer de définir le type d’une variable à l’avance, ce qui nous assure une certaine sécurité.
+
+=> ex: C#
+
+<br />
+
+Cela permet aussi au compilateur de mieux prédire au moment de la compilation, le comportement de votre code.
+
+<br />
+
+Ceci car il connaît à l’avance tous les types de variables utilisés, et peut provoquer une erreur de build pour vous prévenir que quelque part votre code va essayer de stocker un type de valeur qui ne correspond pas à la variable dans lequel stocker cette valeur. 
+
+(Et vous empêche un crash, inutile…)
+
+
+---
+
+#### Langages non-typés
+___
+
+<br />
+
+Mais, il existe aussi des langages dit non-typés!
+
+<br />
+
+Ces langages sont dès lors beaucoup plus permissif; 
+
+la responsabilité de veiller à fournir le bon type de donnée n’incombe plus au compilateur mais au développeur…… :)
+
+=> Si un moment la donnée ne correspond pas, ce sera au runtime que cela se passera (cassera) et non pas au moment de compiler le programme. 
+
+<br />
+
+=> Il faudra beaucoup compter sur le parsing, la gestion des erreurs et les logs, si à divers moment il est demandé à l’utilisateur d’entrer des données manuellement, ainsi que pendant le développement.
+
+<br />
+
+A contrario, certaines choses sont plus rapides et faciles à faire.
