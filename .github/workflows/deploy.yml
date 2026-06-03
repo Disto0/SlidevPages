@@ -32,6 +32,12 @@ jobs:
           nci
           nr build slides.md --base /${{ github.event.repository.name }}/codingbases01/ --out ../dist/codingbases01
 
+      - name: Install and build OOP01
+        run: |
+          cd oop01
+          nci
+          nr build slides.md --base /${{ github.event.repository.name }}/oop01/ --out ../dist/oop01
+
       - name: Copy root files
         run: |
           cp index.html dist/index.html
