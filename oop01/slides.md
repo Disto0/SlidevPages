@@ -244,8 +244,8 @@ Le fait que les données et les fonctions soient regroupées au même endroit vi
 Pour cela, on utilise des modificateurs d'accessibilité, dont notamment :
 - public: 		Accessible partout (pas de restrictions)
 - internal:		Accessible uniquement dans le projet / assembly
-- protected: 	Accessible uniquement dans la classe ou ses dérivés
-- private:		Accessible uniquement dans la classe 
+- protected: 	Accessible uniquement dans la classe ou ses dérivés/enfants (souvent le meilleur compromis sécurité/scalabilité)
+- private:		Accessible uniquement dans la classe (le plus restrictif)
 
 <br />
 
@@ -464,7 +464,7 @@ Une classe, peut aussi hériter d'une autre classe.
 
 => **Elle hérite donc de ses membres** (variables, propriétés, méthodes) qui lui sont accessibles.
 
-(Vous souvenez-vous de l'encapsulation? On y reviendra...)
+Vous souvenez-vous de l'encapsulation? Je vous donne un indice: protected! ;)
 
 <br />
 
