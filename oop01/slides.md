@@ -609,3 +609,70 @@ ___
  <img src="/UE_OOP_inherit.png" width="87.5%" />
 
 </div>
+
+
+---
+
+## Polymorphisme
+___
+
+<br />
+
+Voici maintenant une dernière caractéristique de la POO:
+
+<br />
+
+Si on reprend tout ce qu'on vient de voir, on peut insister sur quelque chose:
+
+<br />
+
+"Maintenant, tout les Student, sont aussi des Person.
+
+(Mais, toutes les Person ne sont évidemment pas des Student...)"
+
+<br />
+
+=> De ce fait, si nous créons une variable Person, nous pouvons stocker un Student dedans.
+
+=> A l'inverse, si nous créons une variable Student, nous ne pouvons pas mettre une Person dedans.
+
+<br />
+
+Par contre, si on reprend notre premier exemple, notre variable Person (qui contient un student)...
+
+Nous pouvons retransformer son contenu par la suite, et avoir dès lors accès aux membres spécifiques de student.
+
+<br />
+
+C'est le polymorphisme.
+
+
+---
+
+### Exemple C#
+___
+
+<br />
+
+``` csharp
+// On crée une variable de type Person
+Person person2;
+// On crée un Student, mais on le stock dans person2
+person2 = new Student("Martin", "Franck", 26, "2");
+...
+// On cast person2 en Student, on peut dès lors acceder à ses membres
+((Student)person2).Study();
+```
+
+---
+
+### Exemple Blueprint
+___
+
+<br />
+
+<div style="display: flex; justify-content: center; ">
+
+ <img src="/UE_OOP_Polymorphism.png" width="87.5%" />
+
+</div>
