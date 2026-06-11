@@ -38,6 +38,12 @@ jobs:
           nci
           nr build slides.md --base /${{ github.event.repository.name }}/oop01/ --out ../dist/oop01
 
+      - name: Install and build UEWORLDCTRL01
+        run: |
+          cd ueworldctrl01
+          nci
+          nr build slides.md --base /${{ github.event.repository.name }}/ueworldctrl01/ --out ../dist/ueworldctrl01
+
       - name: Copy root files
         run: |
           cp index.html dist/index.html
